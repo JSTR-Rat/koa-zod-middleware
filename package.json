@@ -1,0 +1,21 @@
+{
+  "name": "koa-zod-middleware",
+  "description": "Koa middleware leveraging Zod for seamless validation of requests and responses.",
+  "version": "1.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JSTR-Rat/koa-zod-middleware.git"
+  },
+  "keywords": [
+    "Zod",
+    "Koa"
+  ],
+  "author": "JSTR-Rat (https://jstr.sh)",
+  "license": "MIT",
+  "homepage": "https://github.com/JSTR-Rat/koa-zod-middleware",
+  "dependencies": {
+    "@koa/router": "^12.0.1",
+    "zod": "^3.22.4"
+  }
+}
