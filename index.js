@@ -1,5 +1,8 @@
 import { ZodError, ZodObject } from 'zod';
-import { Middleware } from '@koa/router';
+
+/**
+ * @typedef {import("@koa/router").Middleware} Middleware
+ */
 
 /**
  * Create Middleware to Parse a Route's Request and Response data.
@@ -17,6 +20,8 @@ export const parse = (schemas) => async (ctx, next) => {
       ctx.request.body = schemas.body.parse(ctx.request.body);
   } catch (err) {
     if (err instanceof ZodError) {
+      console.log('PARAMS:', ctx.params);
+      console.log('BODY:', ctx.request.body);
       console.log(err);
       ctx.status = 400;
       ctx.body = {
