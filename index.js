@@ -7,20 +7,20 @@ import { ZodError, ZodObject } from 'zod';
 /**
  * Create Middleware to Parse a Route's Request and Response data.
  * @param {object} schemas
- * @param {ZodObject} [schemas.params] - Path Params Schema
+ * @param {ZodObject} [schemas.query] - Query Params Schema
  * @param {ZodObject} [schemas.body] - Request Body Schema
  * @param {ZodObject} [schemas.response] - Response Body Schema
  * @returns {Middleware}
  */
 export const parse = (schemas) => async (ctx, next) => {
   try {
-    if (schemas.params !== undefined)
-      ctx.params = schemas.params.parse(ctx.params);
+    if (schemas.query !== undefined)
+      ctx.request.query = schemas.query.parse(ctx.request.query);
     if (schemas.body !== undefined)
       ctx.request.body = schemas.body.parse(ctx.request.body);
   } catch (err) {
     if (err instanceof ZodError) {
-      console.log('PARAMS:', ctx.params);
+      console.log('QUERY:', ctx.request.query);
       console.log('BODY:', ctx.request.body);
       console.log(err);
       ctx.status = 400;
